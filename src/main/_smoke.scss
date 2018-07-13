@@ -2,36 +2,36 @@
 @if $icedream-fog-bg {
   #main {
     position: relative;
+    min-width: 100%;
+    max-width: 100%;
+    width: 100%;
+    overflow-x: hidden;
 
     &::before {
       opacity: .2;
-      background-image: url('whitefog.png');
+      background-image: url('../images/whitefog.png');
       background-attachment: fixed;
       content: ' '; // sass-lint:disable-line variable-for-property
       position: absolute;
       left: 0;
       top: 0;
       height: 100%;
+      min-width: 100%;
+
       @if not($icedream-fog-bg-animated) {
-        background-size: cover;
-        min-width: 100%;
-        width: 100%;
+        background-size: 200% 100%;
       }
 
       // animate it so it moves right to left slowly?
       @if $icedream-fog-bg-animated {
         background-repeat: repeat-x;
         background-size: 100% 100%;
-        min-width: 200%;
-        width: 200%;
         animation: icedream-bg-slide linear $icedream-fog-bg-animation-length infinite;
+        transform: scale(2, 1) translateX(0);
+        transform-origin: left;
         @keyframes icedream-bg-slide {
-          from {
-            transform: translateX(0);
-          }
-
           to {
-            transform: translateX(-50%);
+            transform: scale(2, 1) translateX(-50%);
           }
         }
       }

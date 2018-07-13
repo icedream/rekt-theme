@@ -94,8 +94,10 @@ export default class Environment {
         loader: 'postcss-loader',
         options: {
           ident: 'postcss',
-          plugins: [
-            postcssImportPlugin(),
+          plugins: loader => [
+            postcssImportPlugin({
+              root: loader.resourcePath,
+            }),
             postcssPresetEnvPlugin(),
             postcssAutoprefixerPlugin(),
           ],

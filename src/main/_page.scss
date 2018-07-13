@@ -2,12 +2,14 @@
 @import 'page/stations';
 
 .page {
-  background: $icedream-bg-color;
+  // background-color: #000;
+  background: transparent;
   color: $icedream-text-color;
 
   // seems like above colors get overwritten again when .active is added
   &.active {
-    background: $icedream-bg-color;
+    // background-color: #000;
+    background: transparent;
     color: $icedream-text-color;
   }
 

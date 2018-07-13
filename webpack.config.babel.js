@@ -171,7 +171,7 @@ export default (options, { mode }) => {
           loader: 'url-loader',
           options: {
             ...urlLoaderOptions,
-            fallback: 'responsive-loader',
+            // fallback: 'responsive-loader',
           },
         })),
 
