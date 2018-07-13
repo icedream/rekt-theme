@@ -16,7 +16,7 @@ body {
       width: 100%;
       text-align: left;
       padding: 1em;
-      margin: 0;
+      margin: 0; // sass-lint:disable-line variable-for-property
       z-index: 900;
       // copied from https://gist.github.com/Odepia/5790397
       background: transparent;
