@@ -1,0 +1,13 @@
+> 0.75%
+#unreleased versions # would throw error on invalid Safari versions
+unreleased Chrome versions
+unreleased Firefox versions
+unreleased Edge versions
+unreleased IE versions
+last 3 major versions
+last 2 years
+Firefox ESR
+IE >= 9
+Android >= 4
+iOS >= 6
+not dead
