@@ -82,12 +82,12 @@ body {
       @if $icedream-nav-tab-fix {
         &:not(.active) {
           border: 1px transparent solid;
-          border-bottom-color: #aaa;
+          border-bottom-color: $rekt-border-color;
 
           &+div {
             // rules here for all but first child that don't follow an active tab
             &:hover {
-              border-left-color: #aaa;
+              border-left-color: $rekt-border-color;
             }
           }
         }
@@ -95,13 +95,13 @@ body {
         &:not(:last-child) {
           // rules here for all but last child
           &:hover {
-            border-right-color: #aaa;
+            border-right-color: $rekt-border-color;
           }
         }
         // rules here for all children
         &:hover {
           border-bottom-color: transparent;
-          border-top-color: #aaa;
+          border-top-color: $rekt-border-color;
         }
       }
     }
