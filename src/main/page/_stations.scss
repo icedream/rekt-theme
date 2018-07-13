@@ -2,4 +2,8 @@
   .title {
     font-weight: 700;
   }
+
+  &.active {
+    background-color: $icedream-station-fill-background-color;
+  }
 }
