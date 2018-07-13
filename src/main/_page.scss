@@ -1,0 +1,18 @@
+@import 'page/meta_overlay_fix';
+@import 'page/stations';
+
+.page {
+  background: $icedream-bg-color;
+  color: $icedream-text-color;
+
+  // seems like above colors get overwritten again when .active is added
+  &.active {
+    background: $icedream-bg-color;
+    color: $icedream-text-color;
+  }
+
+  // apply theme font to all pages but chat page (monospace!)
+  &:not(#page_Chat) {
+    @include icedream-font;
+  }
+}

@@ -1,0 +1,15 @@
+@import 'nav/borderfix';
+@import 'nav/bgfade';
+
+#nav {
+  @include icedream-font;
+
+  // push in some air
+  line-height: $icedream-extended-line-height;
+
+  > .active {
+    // apply darker background and brighter text to content
+    background: $icedream-bg-color;
+    color: $icedream-text-color;
+  }
+}

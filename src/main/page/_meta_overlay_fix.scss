@@ -1,0 +1,8 @@
+// page fixes for metadata overlay
+@if $icedream-metadata-overlay {
+  .page {
+    &:not(#page_EQ) {
+      height: calc(100% - 9vmin);
+    }
+  }
+}

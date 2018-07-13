@@ -1,17 +1,25 @@
 $debug: false !default;
+$debug-element-background-color: rgba(255, 0, 255, .1) !default;
+$debug-element-border-color: #F00 !default;
+$debug-label-background-color: #FFF !default;
+$debug-label-text-color: #000 !default;
+$debug-label-border-color: $debug-label-text-color !default;
+$debug-label-shadow-color: #000 !default;
 
 $icedream-bg-color: #000 !default;
 $icedream-text-color: #EEE !default;
+$icedream-extended-line-height: 5vmin !default;
 
 // extra features
-$icedream-metadata-overlay: false !default;
+$icedream-metadata-overlay: true !default;
+$icedream-metadata-overlay-background-gradient-from: #000 !default;
+$icedream-metadata-overlay-background-gradient-to: transparent !default;
 $icedream-metadata-prefix: '🎶 Now playing: ' !default;
 $icedream-nav-tab-fix: false !default;
 $icedream-nav-bg-fade: true !default;
 $icedream-fog-bg: true !default;
 $icedream-fog-bg-animated: true !default;
 $icedream-fog-bg-animation-length: 5s !default;
-$icedream-fog-bg-tab-offset: true !default;
 
 $rekt-tab-count: 4 !default;
 $rekt-border-color: #AAA !default;

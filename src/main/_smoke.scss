@@ -1,0 +1,40 @@
+// smoke effect
+@if $icedream-fog-bg {
+  #main {
+    position: relative;
+
+    &::before {
+      opacity: .2;
+      background-image: url('whitefog.png');
+      background-attachment: fixed;
+      content: ' '; // sass-lint:disable-line variable-for-property
+      position: absolute;
+      left: 0;
+      top: 0;
+      height: 100%;
+      @if not($icedream-fog-bg-animated) {
+        background-size: cover;
+        min-width: 100%;
+        width: 100%;
+      }
+
+      // animate it so it moves right to left slowly?
+      @if $icedream-fog-bg-animated {
+        background-repeat: repeat-x;
+        background-size: 100% 100%;
+        min-width: 200%;
+        width: 200%;
+        animation: icedream-bg-slide linear $icedream-fog-bg-animation-length infinite;
+        @keyframes icedream-bg-slide {
+          from {
+            transform: translateX(0);
+          }
+
+          to {
+            transform: translateX(-50%);
+          }
+        }
+      }
+    }
+  }
+}

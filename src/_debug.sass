@@ -1,18 +1,20 @@
 @if ($debug)
   *
-    background-color: rgba(255, 0, 255, 0.1)
-    border: red 1px solid
+    background-color: $debug-element-background-color
+    border: $debug-element-border-color 1px solid
     box-sizing: border-box
     position: relative
-    &:after
+
+    &::after
       content: attr(class) // sass-lint:disable-line variable-for-property
       z-index: 99999
-      box-shadow: 0 0 10px black
+      box-shadow: 0 0 10px $debug-label-shadow-color
       position: absolute
       left: 0
       top: 0
-      background: white
-      border: black 1px solid
+      color: $debug-label-text-color
+      background: $debug-label-background-color
+      border: $debug-label-border-color 1px solid
       padding: 4px
       font-size: 12px
       font-weight: bold

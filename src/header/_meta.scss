@@ -1,0 +1,9 @@
+@import 'meta/overlay';
+@import 'meta/prefix';
+
+// currently playing track metadata
+#meta {
+  @include icedream-font;
+  color: $icedream-text-color;
+  line-height: $icedream-extended-line-height;
+}

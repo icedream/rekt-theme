@@ -1,0 +1,8 @@
+@if $icedream-metadata-prefix {
+  #meta {
+    &::before {
+      content: $icedream-metadata-prefix;
+      font-weight: 700;
+    }
+  }
+}
