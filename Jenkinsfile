@@ -38,20 +38,52 @@ pipeline {
 		ansiColor('xterm')
 	}
 	stages {
-		stage('code-quality:lint') {
+		stage('yarn:install') {
 			agent {
 				docker {
 					label 'docker'
 					image nodeImage
 				}
 			}
-			environment {
-				NODE_ENV = "testing"
-			}
 			steps {
 				sh "yarn"
-				sh "yarn lint -f checkstyle -o checkstyle.xml || true"
-				stash name: 'lint', includes: 'checkstyle.xml'
+				stash name: 'node_modules', includes: 'node_modules/**'
+			}
+		}
+		stage('code-quality:lint') {
+			parallel {
+				stage('code-quality:lint:eslint') {
+					agent {
+						docker {
+							label 'docker'
+							image nodeImage
+						}
+					}
+					environment {
+						NODE_ENV = "testing"
+					}
+					steps {
+						unstash 'node_modules'
+						sh "yarn lint:eslint -f checkstyle -o checkstyle_eslint.xml || true"
+						stash name: 'lint-eslint', includes: 'checkstyle_eslint.xml'
+					}
+				}
+				stage('code-quality:lint:sass') {
+					agent {
+						docker {
+							label 'docker'
+							image nodeImage
+						}
+					}
+					environment {
+						NODE_ENV = "testing"
+					}
+					steps {
+						unstash 'node_modules'
+						sh "yarn lint:sass -f checkstyle -o checkstyle_less.xml || true"
+						stash name: 'lint-sass', includes: 'checkstyle_less.xml'
+					}
+				}
 			}
 		}
 		stage('code-quality:lint-publish') {
@@ -62,8 +94,9 @@ pipeline {
 				}
 			}
 			steps {
-				unstash 'lint'
-				checkstyle canRunOnFailed: true, pattern: 'checkstyle.xml'
+				unstash 'lint-sass'
+				unstash 'lint-eslint'
+				checkstyle canRunOnFailed: true, pattern: 'checkstyle_*.xml'
 			}
 		}
 		stage('build') {
@@ -74,10 +107,8 @@ pipeline {
 				}
 			}
 			steps {
-				sh """
-				yarn
-				yarn build:production
-				"""
+				unstash 'node_modules'
+				sh "yarn build:production"
 				dir("dist") {
 					archiveArtifacts '**'
 				}
