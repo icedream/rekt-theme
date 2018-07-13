@@ -57,9 +57,11 @@ body {
   #meta {
     color: $icedream-text-color;
 
-    &:before {
-      content: '🎶 Now playing: ';
-      font-weight: 700;
+    @if $icedream-metadata-prefix {
+      &:before {
+        content: $icedream-metadata-prefix;
+        font-weight: 700;
+      }
     }
   }
 
