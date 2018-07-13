@@ -79,8 +79,5 @@
   },
   "dependencies": {
     "typeface-orbitron": "^0.0.54"
-  },
-  "resolutions": {
-    "caniuse-api": "3.0.0"
   }
 }
