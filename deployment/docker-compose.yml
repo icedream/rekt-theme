@@ -1,0 +1,43 @@
+# Docker Compose project stack
+# This will be used by Jenkins to fire up the project on the server.
+
+version: "3.5"
+
+networks:
+  # Private network with all containers that will be published via HTTP/HTTPS
+  overlay_web_front:
+    external: true
+
+x-security-headers: &security_headers
+  traefik.frontend.headers.SSLRedirect: "true"
+  traefik.frontend.headers.ForceSTSHeader: "true"
+  traefik.frontend.headers.STSSeconds: "315360000"
+  traefik.frontend.headers.referrerPolicy: "same-origin"
+  traefik.frontend.headers.contentTypeNosniff: "true"
+  traefik.frontend.headers.browserXSSFilter: "true"
+  traefik.frontend.headers.frameDeny: "true"
+  #traefik.frontend.headers.contentSecurityPolicy: "default-src 'none'; base-uri 'none'; form-action 'self'; script-src 'self'; object-src 'none'; style-src 'self' 'unsafe-inline'; img-src 'self'; media-src 'none'; frame-src 'none'; frame-ancestors 'none'; font-src 'self'; connect-src 'self'"
+
+services:
+  # Single page frontend application
+  frontend:
+    image: ${REKTTHEME_FRONTEND_IMAGE:-docker.dreamnetwork.oss:5000/rekt-theme/rekt-theme-frontend}
+    build:
+      context: ..
+      dockerfile: Dockerfile.dist
+    env_file:
+      - frontend.env
+    deploy:
+      mode: global
+      placement:
+        constraints:
+          - node.labels.deployment.production == 1
+          - node.platform.os == linux
+          - node.platform.arch == x86_64
+      labels:
+        <<: *security_headers
+        traefik.port: "80"
+        traefik.frontend.rule: "Host:${REKTTHEME_FRONTEND_HOSTNAME:-rekt-theme.icedream.tech}"
+        traefik.docker.network: overlay_web_front
+    networks:
+      overlay_web_front:

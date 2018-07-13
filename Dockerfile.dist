@@ -1,0 +1,5 @@
+FROM icedream/caddy
+
+WORKDIR /data/
+COPY Caddyfile.dist /data/Caddyfile
+COPY dist/ /htdocs/
