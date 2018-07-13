@@ -145,6 +145,7 @@ pipeline {
 			steps {
 				unstash 'node_modules'
 				sh "yarn build:production"
+				stash name: 'dist', includes: 'dist/**'
 				dir("dist") {
 					archiveArtifacts '**'
 				}
@@ -168,6 +169,7 @@ pipeline {
 				apk add --no-cache python3 py3-pip
 				pip3 install docker-compose==${dockerComposeVersion}
 				"""
+				unstash 'dist'
 				sh """
 				export PATH="$PATH:/var/tmp/deps/docker-compose"
 				cd deployment
