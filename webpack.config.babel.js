@@ -15,12 +15,18 @@ import { isatty } from 'tty';
 import chalk from 'chalk';
 import _debug from 'debug';
 // import slash from 'slash';
+
+import cssnano from 'cssnano';
+
 import CaseSensitivePathsPlugin from 'case-sensitive-paths-webpack-plugin';
 // import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import HtmlPlugin from 'html-webpack-plugin';
 import ProgressBarPlugin from 'progress-bar-webpack-plugin';
 import UglifyJsPlugin from 'uglifyjs-webpack-plugin';
+import OptimizeCssAssetsPlugin from 'optimize-css-assets-webpack-plugin';
+
+import postcssSafeParser from 'postcss-safe-parser';
 
 import Environment from './config/webpack/environment';
 
@@ -263,7 +269,6 @@ export default (options, { mode }) => {
 
       // Production builds
       ...[
-      // JavaScript minification
         new LoaderOptionsPlugin({ debug: false, minimize: true }),
 
         // Hoisting
@@ -318,6 +323,15 @@ export default (options, { mode }) => {
             },
           },
           sourceMap: true,
+        }),
+        new OptimizeCssAssetsPlugin({
+          assetNameRegExp: /\.css$/gi,
+          cssProcessor: cssnano,
+          cssProcessorOptions: {
+            parser: postcssSafeParser,
+            discardComments: { removeAll: true },
+          },
+          canPrint: true,
         }),
       ],
     },
