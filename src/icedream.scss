@@ -118,7 +118,7 @@ body {
         opacity: 0.2;
         background-image: url("whitefog.png");
         background-attachment: fixed;
-        content: ' ';
+        content: ' '; // sass-lint:disable-line variable-for-property
         position: absolute;
         left: 0;
         top: 0;
