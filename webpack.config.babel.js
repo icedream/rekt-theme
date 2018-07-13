@@ -34,7 +34,7 @@ const {
   ModuleConcatenationPlugin,
 } = optimize;
 
-export default (options) => {
+export default (options, { mode }) => {
   const environment = new Environment({
     // @HACK
     // ExtractTextPlugin,
@@ -42,6 +42,7 @@ export default (options) => {
   });
 
   environment.input(options);
+  environment.input(mode);
 
   debug.generated(environment);
 
