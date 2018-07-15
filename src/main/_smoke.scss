@@ -18,6 +18,10 @@
       height: 100%;
       min-width: 100%;
 
+      @if $icedream-fog-bg-blur {
+          filter: blur(16px);
+      }
+
       @if not($icedream-fog-bg-animated) {
         background-size: 200% 100%;
       }
