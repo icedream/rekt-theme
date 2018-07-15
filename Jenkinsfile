@@ -34,6 +34,10 @@ def dockerImage = "docker:${dockerVersion}"
 def dockerComposeImage = "docker/compose:${dockerComposeVersion}"
 def nodeImage = "node:8"
 
+// Fully qualified names for our project images
+def dockerProjectImageNamespace = "docker.dreamnetwork.oss:5000/icedream/rekt-theme"
+def dockerProjectFrontendImageName = dockerProjectImageNamespace
+
 // Abort build under some conditions
 @NonCPS
 def shouldSkip() {
