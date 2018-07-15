@@ -1,16 +1,16 @@
-#########################
-## Sample Sass Lint File
-#########################
+###############################################################################
+# sass-lint configuration
+
 # Linter Options
 options:
-  merge-default-rules: true
+  merge-default-rules: false
   max-warnings: 1000
 
 # File Options
 files:
   include: 'src/**/*.s+(a|c)ss'
   ignore:
-    - 'node_modules/**/*.*'
+    - 'node_modules/**/*'
 
 # Rule Configuration
 rules:
@@ -23,7 +23,6 @@ rules:
       exclude:
         - breakpoint
         - mq
-
   no-warn: 1
   no-debug: 1
   no-duplicate-properties:

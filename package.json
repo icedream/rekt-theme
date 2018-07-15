@@ -10,7 +10,7 @@
     "build": "run-s build:development --",
     "clean": "rimraf dist",
     "lint": "run-s lint:* --",
-    "lint:sass": "sass-lint -v -q -c sass-lint.yml",
+    "lint:sass": "sass-lint -v -q",
     "lint:eslint": "eslint .",
     "postinstall": "node ./devtools/lockfiles",
     "prepublishOnly": "run-s build:production",

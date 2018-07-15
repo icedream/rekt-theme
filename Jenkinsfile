@@ -114,8 +114,9 @@ pipeline {
 					}
 					steps {
 						unstash 'node_modules'
-						sh "yarn lint:sass -f checkstyle -o checkstyle_less.xml || true"
-						stash name: 'lint-sass', includes: 'checkstyle_less.xml'
+						writeFile file: 'checkstyle_sass.xml', text: '<?xml version="1.0" encoding="utf-8"?><checkstyle version="4.3"></checkstyle>'
+						sh "yarn lint:sass -f checkstyle -o checkstyle_sass.xml || true"
+						stash name: 'lint-sass', includes: 'checkstyle_sass.xml'
 					}
 				}
 			}
