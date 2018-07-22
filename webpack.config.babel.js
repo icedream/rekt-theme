@@ -385,9 +385,9 @@ export default (options, { mode }) => {
           sourceMap: true,
         }),
         new OptimizeCssAssetsPlugin({
-          assetNameRegExp: /\.css$/gi,
           cssProcessor: cssnano,
           cssProcessorOptions: {
+            preset: 'advanced',
             parser: postcssSafeParser,
             discardComments: { removeAll: true },
           },
