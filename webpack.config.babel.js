@@ -103,7 +103,7 @@ export default (options, { mode }) => {
     .replace(/\[chunkhash(.*?)\]/g, '[id$1]')
     .replace(/\[ext(.*?)\]/g, 'css');
   // const cssOutputRebasePath = `${slash(path.relative(path.dirname(cssOutputFileName), ''))}/`;
-  const cssOutputRebasePath = '/';
+  const cssOutputRebasePath = '../../../';
 
   // Default options for file-loader
   const getFileLoaderOptions = type => ({
