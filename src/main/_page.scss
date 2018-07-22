@@ -31,7 +31,7 @@
       .slider {
         transition: opacity ease-out .5s, transform ease-out .5s;
         opacity: 0;
-        transform: scale(0%);
+        transform: scale(0);
         background-color: rgba(0, 0, 0, .75);
       }
     }
@@ -42,7 +42,7 @@
       #eq {
         .slider {
           opacity: 1;
-          transform: scale(100%);
+          transform: scale(1);
         }
       }
     }
