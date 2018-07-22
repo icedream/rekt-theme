@@ -1,2 +1,10 @@
 @import 'main/page';
 @import 'main/smoke';
+
+#main {
+  background-image: url(./images/decay.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 50%;
+  background-color: #000;
+}
