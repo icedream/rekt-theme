@@ -48,7 +48,7 @@
             opacity: $icedream-fog-base-opacity + ($icedream-fog-base-opacity * .5);
           }
           100% {
-            opacity: $icedream-fog-base-opacity - ($icedream-fog-base-opacity * .0.5);
+            opacity: $icedream-fog-base-opacity - ($icedream-fog-base-opacity * .05);
           }
         }
         @keyframes icedream-bg-slide {
