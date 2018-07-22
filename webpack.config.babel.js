@@ -201,6 +201,29 @@ export default (options, { mode }) => {
                 // fallback: 'responsive-loader',
               },
             },
+            {
+              loader: 'image-webpack-loader',
+              options: {
+                mozjpeg: {
+                  progressive: true,
+                  quality: 80,
+                },
+                optipng: {
+                  enabled: true,
+                  optimizationLevel: 7,
+                },
+                pngquant: {
+                  enabled: false,
+                  quality: '65-85',
+                  speed: 2,
+                  strip: true,
+                },
+                gifsicle: {
+                  interlaced: false,
+                },
+                disable: development,
+              },
+            },
           ],
         })),
 
