@@ -1,13 +1,13 @@
 // player
 #player {
   .player_button {
-    @if $icedream-staturation {
+    @if $icedream-saturation {
       @include saturate-from-red();
     }
   }
   .slider {
     .active {
-      @if $icedream-staturation {
+      @if $icedream-saturation {
         @include saturate-from-red();
       }
     }

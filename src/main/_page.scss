@@ -47,13 +47,13 @@
   }
 
   .eq {
-    @if $icedream-staturation {
+    @if $icedream-saturation {
       @include saturate-from-red();
     }
   }
 
   #wave {
-    @if $icedream-staturation {
+    @if $icedream-saturation {
       @include saturate-from-red(300%, 5%);
     }
   }
