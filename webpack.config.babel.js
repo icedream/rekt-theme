@@ -40,6 +40,8 @@ const {
   ModuleConcatenationPlugin,
 } = optimize;
 
+const dj = 'icedream';
+
 export default (options, { mode }) => {
   const environment = new Environment({
     // @HACK
@@ -59,39 +61,62 @@ export default (options, { mode }) => {
     docker,
   } = environment;
 
-  const baseOutputFilename = development
-    ? 'assets/dev/[name].dev.[ext]'
-    // Always use a hash (in production) to prevent files with the same name causing issues
-    : 'assets/prod/[chunkhash:2]/[name].[chunkhash:8].[ext]';
+  const baseOutputFilepath = 'static/theme/[type]/[filename]';
+  const filenames = {
+    css: '[name].[ext]',
+    default: development
+      ? '[name].dev.[ext]'
+      // Always use a hash (in production) to prevent files with the same name causing issues
+      : '[name].[chunkhash:8].[ext]',
+  };
 
-  const webpackChunkFilename = baseOutputFilename
-    .replace(/\[ext(.*?)\]/g, 'js');
-  const webpackOutputFilename = webpackChunkFilename;
+  function replaceField(string, name, value) {
+    const retval = string.replace(new RegExp(`\\[${name}(.*?)\\]`), value);
+    debug('replaceField:', { args: { string, name, value } }, string, '=>', retval);
+    return retval;
+  }
 
-  const assetOutputFilename = baseOutputFilename
-    .replace(/\[chunkhash(.*?)\]/g, '[hash$1]');
+  function getOutputFilename(type) {
+    let filename = baseOutputFilepath;
+    switch (type) {
+      case 'css':
+        filename = replaceField(filename, 'type', type);
+        break;
+      default:
+        filename = replaceField(filename, 'type', `${type}/${dj}`);
+        break;
+    }
+    filename = replaceField(filename, 'filename', filenames[type] || filenames.default);
+    return filename;
+  }
 
-  const cssOutputFileName = baseOutputFilename
+  function getAssetOutputFilename(type) {
+    let filename = getOutputFilename(type);
+    filename = replaceField(filename, 'chunkhash', '[hash$1]');
+    return filename;
+  }
+
+  const cssOutputFileName = getOutputFilename('css')
     .replace(/\[ext(.*?)\]/g, 'css');
     // .replace(/\[chunkhash(.*?)\]/g, '[contenthash$1]');
-  const cssChunkOutputFileName = baseOutputFilename
+  const cssChunkOutputFileName = getOutputFilename('css')
     .replace(/\[chunkhash(.*?)\]/g, '[id$1]')
     .replace(/\[ext(.*?)\]/g, 'css');
   // const cssOutputRebasePath = `${slash(path.relative(path.dirname(cssOutputFileName), ''))}/`;
   const cssOutputRebasePath = '/';
 
   // Default options for file-loader
-  const fileLoaderOptions = {
-    name: assetOutputFilename,
+  const getFileLoaderOptions = type => ({
+    name: getAssetOutputFilename(type),
     publicPath: cssOutputRebasePath,
-  };
+  });
 
   // Default options for url-loader
-  const urlLoaderOptions = {
-    ...fileLoaderOptions,
+  const getUrlLoaderOptions = type => ({
+    ...getFileLoaderOptions(type),
     // limit: 1, // Don't inline anything (but empty files) by default
     limit: 4 * 1024,
-  };
+  });
 
   const config = {
     name: 'frontend',
@@ -168,22 +193,34 @@ export default (options, { mode }) => {
           /\.jpe?g$/i, // jpeg
         ].map(test => ({
           test,
-          loader: 'url-loader',
-          options: {
-            ...urlLoaderOptions,
-            // fallback: 'responsive-loader',
-          },
+          use: [
+            {
+              loader: 'url-loader',
+              options: {
+                ...getUrlLoaderOptions('img'),
+                // fallback: 'responsive-loader',
+              },
+            },
+          ],
         })),
 
         ...[
           /\.(mp4|ogg|webm)$/i, // video
-          /\.(eot|otf|ttf|woff|woff2)$/i, // fonts
           /\.(wav|mp3|m4a|aac|oga)$/i, // audio
         ].map(test => ({
           test,
           loader: 'url-loader',
-          options: urlLoaderOptions,
+          options: getUrlLoaderOptions('media'),
         })),
+
+        ...[
+          /\.(eot|otf|ttf|woff|woff2)$/i, // fonts
+        ].map(test => ({
+          test,
+          loader: 'url-loader',
+          options: getUrlLoaderOptions('font'),
+        })),
+
         {
           test: /\.css$/,
           use: environment.styleLoaders(),
@@ -205,8 +242,8 @@ export default (options, { mode }) => {
     },
 
     output: {
-      filename: webpackOutputFilename,
-      chunkFilename: webpackChunkFilename,
+      filename: replaceField(getOutputFilename('js'), 'ext', 'js'),
+      chunkFilename: replaceField(getOutputFilename('js'), 'ext', 'js'),
       path: path.join(__dirname, 'dist'),
       publicPath: '',
       globalObject: 'this', // https://github.com/webpack-contrib/worker-loader/issues/142#issuecomment-385764803
@@ -337,7 +374,7 @@ export default (options, { mode }) => {
     },
     devtool: server ? 'cheap-module-source-map' : 'source-map',
     entry: {
-      app: [
+      [dj]: [
         path.join(__dirname, 'src'),
       ],
     },
