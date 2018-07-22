@@ -28,9 +28,9 @@
     }
     #eq {
       margin: 20vh;
-      transition: opacity ease-out .5s, transform ease-out .5s;
+      transition: opacity ease-out .33s, transform ease-out .33s;
       opacity: 0;
-      transform: scale(0);
+      transform: scale(0.75);
       .slider {
         background-color: rgba(0, 0, 0, .75);
       }
