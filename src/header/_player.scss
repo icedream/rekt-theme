@@ -1,0 +1,15 @@
+// player
+#player {
+  .player_button {
+    @if $icedream-staturation {
+      @include saturate-from-red();
+    }
+  }
+  .slider {
+    .active {
+      @if $icedream-staturation {
+        @include saturate-from-red();
+      }
+    }
+  }
+}

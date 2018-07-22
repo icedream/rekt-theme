@@ -17,4 +17,16 @@
   &:not(#page_Chat) {
     @include icedream-font;
   }
+
+  .eq {
+    @if $icedream-staturation {
+      @include saturate-from-red();
+    }
+  }
+
+  #wave {
+    @if $icedream-staturation {
+      @include saturate-from-red(300%, 5%);
+    }
+  }
 }
