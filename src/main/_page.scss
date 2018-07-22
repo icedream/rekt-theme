@@ -18,6 +18,34 @@
     @include icedream-font;
   }
 
+  &#page_EQ {
+    #wave {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 25%;
+      bottom: 25%;
+    }
+    #eq {
+      margin: 20vh;
+      .slider {
+        transition: opacity ease-out .5s, transform ease-out .5s;
+        opacity: 0;
+        transform: scale(0%);
+        background-color: rgba(0, 0, 0, .75);
+      }
+      &:hover {
+        .slider {
+          opacity: 1;
+          transform: scale(100%);
+        }
+      }
+    }
+    #bars {
+      display: none;
+    }
+  }
+
   .eq {
     @if $icedream-staturation {
       @include saturate-from-red();
