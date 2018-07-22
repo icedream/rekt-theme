@@ -8,7 +8,7 @@
     overflow-x: hidden;
 
     &::before {
-      opacity: .2;
+      opacity: $icedream-fog-base-opacity;
       background-image: url('../images/whitefog.png');
       background-attachment: fixed;
       content: ' '; // sass-lint:disable-line variable-for-property
@@ -36,19 +36,19 @@
         transform-origin: left;
         @keyframes icedream-bg-pulse {
           0% {
-            opacity: .3;
+            opacity: $icedream-fog-base-opacity - ($icedream-fog-base-opacity * .05);
           }
           22% {
-            opacity: .2;
+            opacity: $icedream-fog-base-opacity - ($icedream-fog-base-opacity * .12);
           }
           54% {
-            opacity: .35;
+            opacity: $icedream-fog-base-opacity + ($icedream-fog-base-opacity * .15);
           }
           77% {
-            opacity: .16;
+            opacity: $icedream-fog-base-opacity + ($icedream-fog-base-opacity * .5);
           }
           100% {
-            opacity: .3;
+            opacity: $icedream-fog-base-opacity + ($icedream-fog-base-opacity * .2);
           }
         }
         @keyframes icedream-bg-slide {
