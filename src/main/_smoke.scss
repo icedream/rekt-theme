@@ -30,8 +30,12 @@
       @if $icedream-fog-bg-animated {
         background-repeat: repeat-x;
         background-size: 100% 100%;
-        animation: icedream-bg-slide linear $icedream-fog-bg-slide-animation-length infinite,
-          icedream-bg-pulse ease-in-out $icedream-fog-bg-pulse-animation-length infinite;
+        @if $icedream-fog-bg-pulse {
+          animation: icedream-bg-slide linear $icedream-fog-bg-slide-animation-length infinite,
+            icedream-bg-pulse ease-in-out $icedream-fog-bg-pulse-animation-length infinite;
+        } @else {
+          animation: icedream-bg-slide linear $icedream-fog-bg-slide-animation-length infinite;
+        }
         transform: scale(2, 1) translateX(0);
         transform-origin: left;
         @keyframes icedream-bg-pulse {
