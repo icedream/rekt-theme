@@ -22,7 +22,7 @@ if (env.BRANCH_NAME != "master") {
 }
 
 // How to access the swarm manager of the deployment infrastructure
-def dockerSwarmManagerUrl = 'tcp://dn-docker-manager.serverkomplex.de:2375'
+def dockerSwarmManagerUrl = 'tcp://dn-cos-docker-a.dmz.hzn-b.serverkomplex.de:2375'
 def dockerSwarmManagerCredentials = 'docker_socket_project_gitea_icedream'
 
 // Docker image version tags
