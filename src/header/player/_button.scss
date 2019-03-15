@@ -1,0 +1,7 @@
+#player {
+  .player_button {
+    @if $icedream-saturation {
+      @include saturate-from-red();
+    }
+  }
+}
