@@ -142,6 +142,15 @@ export default (options, { mode }) => {
       watchOptions: {
         ignored: /node_modules/,
       },
+      proxy: {
+        '**': {
+          target: 'https://rekt.fm',
+          headers: {
+            Host: 'rekt.fm',
+          },
+          secure: false,
+        },
+      },
     },
 
     module: {

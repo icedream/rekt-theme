@@ -1,85 +1,377 @@
+
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <!-- PATCHUP for local testing -->
+    <script>
+    function gtag() { }
+    </script>
 
-<head>
-	<title>Get REKT! - Rekt Network - 320kbps Post Apocalyptic Radio</title>
+    <!-- TEMPLATE VARIABLES -->
+    <script>
+      var HOST = "rekt.fm";
+      
+        var SITENAME = "Rekt.Network";
+        var DEFAULT_STATION = "rekt";
+        var FAVICON = "https://rekt.fm/static/img/favicon.png";
+        var FAVICON_LIVE = "https://rekt.fm/static/img/favicon-live.png";
+      
 
-	<meta name=viewport content="width=device-width, initial-scale=0.75" />
-	<meta charset="UTF-8">
-	<meta name="description" content="There are two choices left for you. Succumb to the mindset of the machine city? Or Get Rekt! On the Rekt Network's
-		320kbps post apocalyptic radio streams" />
-	<meta name="mobile-web-app-capable" content="yes">
+    </script>
 
-	<meta property="og:url" content="https://rekt.network" />
-	<meta property="og:site_name" content="https://rekt.network" />
-	<meta property="og:type" content="music.radio_station" />
-	<meta property="og:audio:url" content="https://stream.rekt.network/live.mp3" />
-	<meta property="og:title" content="Get REKT! - Rekt Network - 320kbps Post Apocalyptic Radio" />
-	<meta property="og:description" content="There are two choices left for you. Succumb to the mindset of the machine city? Or Get Rekt! On the Rekt Network's
-		320kbps post apocalyptic radio streams" />
-	<meta property="og:image" content="https://rekt.network/img/rekt_white.png" />
-	<meta property="fb:app_id" content="1000465486695949" />
+    <meta name=viewport content="width=device-width, initial-scale=1.0"/>
+    <meta charset="UTF-8">
+    <meta name="mobile-web-app-capable" content="yes">
 
-	<meta name="twitter:card" content="player" />
-	<meta name="twitter:title" content="Rekt Network" />
-	<meta name="twitter:description" content="There are two choices left for you. Succumb to the mindset of the machine city? Or Get Rekt! On the Rekt Network's
-		320kbps post apocalyptic radio streams" />
-	<meta name="twitter:player" content="https://rekt.network/player?station=live" />
-	<meta name="twitter:player:width" content="600" />
-	<meta name="twitter:player:height" content="100" />
-	<meta name="twitter:image" content="https://rekt.network/img/rekt_white.png" />
-	<meta name="twitter:player:stream" content="https://stream.rekt.network/live.mp3" />
-	<meta name="twitter:player:stream:content_type" content="audio/mpeg " />
+    <link rel="canonical" href="https://rekt.fm"/>
+
+    
+    <title>Rekt FM - 320kbps Cyberpunk Radio</title>
+    <meta name="description" content="24/7 Cyberpunk Music Radio. Featuring 320kbps Audio, Live DJs, IRC Chats & Custom Code. Programmed to hack your mind with Dubstep, Synthwave, DnB, EDM, Lo-Fi & Jazz">
+    <link id="favicon" rel="shortcut icon" href="https://rekt.fm/static/img/favicon.png">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#181818">
+
+    <!--FACEBOOK-->
+    <meta property="og:title" content="Rekt FM - 320kbps Cyberpunk Radio">
+    <meta property="og:description" content="24/7 Cyberpunk Music Radio. Featuring 320kbps Audio, Live DJs, IRC Chats & Custom Code. Programmed to hack your mind with Dubstep, Synthwave, DnB, EDM, Lo-Fi & Jazz">
+    <meta property="og:image" content="https://rekt.fm/static/img/logo.png">
+    <meta property="og:site_name" content="Rekt FM">
+    <meta property="og:url" content="https://rekt.fm/">
+    <meta property="fb:app_id" content="1000465486695949"/>
+    <meta property="og:audio" content="https://stream.rekt.fm/rekt.m4a">
+    <meta property="og:type" content="music.radio_station">
+
+    <!--TWITTER-->
+    <meta name="twitter:title" content="Rekt FM - 320kbps Cyberpunk Radio">
+    <meta name="twitter:description" content="24/7 Cyberpunk Music Radio. Featuring 320kbps Audio, Live DJs, IRC Chats & Custom Code. Programmed to hack your mind with Dubstep, Synthwave, DnB, EDM, Lo-Fi & Jazz">
+    <meta name="twitter:image" content="https://rekt.fm/static/img/logo.png">
+    <meta name="twitter:url" content="https://rekt.fm/">
+    <meta name="twitter:site" content="@TheRektNetwork">
+    <meta name="twitter:creator" content="@TheRektNetwork">
+    <meta name="twitter:card" content="player">
+    <meta name="twitter:player" content="https://rekt.fm/player/">
+    <meta name="twitter:player:stream" content="https://stream.rekt.fm/rekt.m4a">
+    <meta name="twitter:player:stream:content_type" content="audio/aac">
+    <meta name="twitter:player:width" content="600">
+    <meta name="twitter:player:height" content="100">
+  
+
+    <link rel="stylesheet" href="https://rekt.fm/static/css/style.css" type="text/css"/>
+    
+    <link rel="stylesheet" type="text/css" id="theme"/>
+
+    <!-- SCRIPTS -->
+    <link rel="preload" href="https://rekt.fm/static/js/firebase-app.js" as="script"/>
+    <link rel="preload" href="https://rekt.fm/static/js/firebase-messaging.js" as="script"/>
+    <link rel="preload" href="https://rekt.fm/static/js/push.js" as="script"/>
+
+    <link rel="preload" href="https://rekt.fm/static/js/pf_eventsource.js" as="script"/>
+    <link rel="preload" href="https://rekt.fm/static/js/shaka.js" as="script"/>
+
+    <link rel="preload" href="https://rekt.fm/static/js/helper.js" as="script"/>
+    <link rel="preload" href="https://rekt.fm/static/js/settings.js" as="script"/>
+    <link rel="preload" href="https://rekt.fm/static/js/slider.js" as="script"/>
+    <link rel="preload" href="https://rekt.fm/static/js/menu.js" as="script"/>
+    <link rel="preload" href="https://rekt.fm/static/js/page.js" as="script"/>
+    <link rel="preload" href="https://rekt.fm/static/js/stream.js" as="script"/>
+    <link rel="preload" href="https://rekt.fm/static/js/station.js" as="script"/>
+    <link rel="preload" href="https://rekt.fm/static/js/player.js" as="script"/>
+    <link rel="preload" href="https://rekt.fm/static/js/meta.js" as="script"/>
+
+    <link rel="preload" href="https://rekt.fm/static/js/webrtc.js" as="script"/>
+    <link rel="preload" href="https://rekt.fm/static/js/irc.js" as="script"/>
+
+    <link rel="preload" href="https://rekt.fm/static/js/archive.js" as="script"/>
+    <link rel="preload" href="https://rekt.fm/static/js/releases.js" as="script"/>
+
+    <link rel="preload" href="https://rekt.fm/static/js/keybind.js" as="script"/>
+
+    <!-- THEMES -->
+    <link rel="prefetch" href="https://rekt.fm/static/theme/img/rekt.webm" as="video"/>
+    <link rel="prefetch" href="https://rekt.fm/static/theme/img/rekt.jpg" as="image"/>
+    <link rel="prefetch" href="https://rekt.fm/static/theme/css/rekt.css" as="style"/>
+
+    <link rel="prefetch" href="https://rekt.fm/static/theme/img/nightride.jpg" as="image"/>
+    <link rel="prefetch" href="https://rekt.fm/static/font/nightride/arcade_i-webfont.woff2" as="font"/>
+    <link rel="prefetch" href="https://rekt.fm/static/theme/css/nightride.css" as="style"/>
+
+    <link rel="prefetch" href="https://rekt.fm/static/theme/img/rektory.jpg" as="image"/>
+    <link rel="prefetch" href="https://rekt.fm/static/theme/css/rektory.css" as="style"/>
+
+    <link rel="prefetch" href="https://rekt.fm/static/theme/img/rektify.webm" as="image"/>
+    <link rel="prefetch" href="https://rekt.fm/static/font/rektify/JackeyFont.woff" as="font"/>
+    <link rel="prefetch" href="https://rekt.fm/static/theme/css/rektify.css" as="style"/>
+
+    <link rel="prefetch" href="https://rekt.fm/static/theme/css/archive.css" as="style"/>
+    <link rel="prefetch" href="https://rekt.fm/static/theme/css/releases.css" as="style"/>
+  </head>
 
 
-	<link rel="shortcut icon" href="https://rekt.network/static/img/favicon.png">
-	<link rel="manifest" href="https://rekt.network/manifest.json" />
+  <body class="flex c">
+    <aside id="menu_left" class="flex r menu left transition">
+      <nav id="menu_left_nav" class="flex c left">
+      </nav>
+      <div id="menu_left_page" class="flex c fill">
+      </div>
+    </aside>
+    <aside id="menu_right" class="flex rr menu right transition">
+      <nav id="menu_right_nav" class="flex c right">
+      </nav>
+      <div id="menu_right_page" class="flex c fill">
+      </div>
+    </aside>
+    <div id="handle_left" class="handle left"></div>
+    <div id="handle_right" class="handle right"></div>
+    <div id="overlay"></div>
 
-	<link rel="stylesheet" href="https://rekt.network/static/css/slider.css" type="text/css" />
-	<link rel="stylesheet" href="https://rekt.network/static/css/style.css" type="text/css" />
-	<link rel="stylesheet" href="https://rekt.network/static/css/irc.css" type="text/css" />
-	<link rel="stylesheet" href="https://rekt.network/static/theme/css/default.css" type="text/css" id="theme" />
-</head>
+    <header id="header" class="flex c auto">
+        <div class="flex c fill auto">
+          <div id="player_wrap" class="flex auto">
+            <div class="flex fill r">
+              <div id="menu_button_left" class="flex fill menu_button">
+                &#x276F;
+              </div>
+            </div>
+            <div id="player" class="flex center">
+              
 
-<body class="table">
-	<header>
-		<div id="player">
-			<div id="player_play" class="player_button"></div>
-			<div id="player_stop" class="player_button" style="display:none;"></div>
-		</div>
-		<div id="meta">
-			Loading Track Information
-		</div>
-		<nav id="nav">
-		</nav>
-	</header>
-	<main id="main">
-	</main>
-	<script src="https://rekt.network/static/js/shaka.js"></script>
-	<script src="https://rekt.network/static/js/helper.js"></script>
-	<script src="https://rekt.network/static/js/slider.js"></script>
-	<script src="https://rekt.network/static/js/page.js"></script>
-	<script src="https://rekt.network/static/js/stream.js"></script>
-	<script src="https://rekt.network/static/js/eq.js"></script>
-	<script src="https://rekt.network/static/js/station.js"></script>
-	<script src="https://rekt.network/static/js/settings.js"></script>
+              <div id="player_play" class="player_button">
+                <svg width="65px" height="65px" viewBox="0 0 65 65" xmlns="http://www.w3.org/2000/svg">
+                  <polyline class="playstop" id="playSVG" points="4.35,0 4.35,65 60.65,32.5"/>
+                </svg>
+              </div>
 
-	<script src="https://rekt.network/static/js/fetch.js"></script>
-	<!-- <script src="https://rekt.network/static/js/meta_worker.js"></script> -->
-	<script src="https://rekt.network/static/js/meta.js"></script>
+              <div id="player_stop" class="player_button" style="display:none;">
+                <svg width="65px" height="65px" viewBox="0 0 65 65" xmlns="http://www.w3.org/2000/svg">
+                  <rect class="playstop" id="stopSVG" width="65" height="65"/>
+                </svg>
+              </div>
 
-	<script src="https://rekt.network/static/js/webrtc.js"></script>
-	<script src="https://rekt.network/static/js/irc.js"></script>
+              <div id="player_slider" class="player">
+                <svg id="volumeSVG" viewBox="0 0 780 65" height="65px" width="780px" xmlns="http://www.w3.org/2000/svg">
+                  <defs>
+                    <linearGradient id="rektGradient" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="65">
+                      <stop  offset="0" stop-color="var(--gradient-stop-0, #FD0000)"/>
+                      <stop  offset="1" stop-color="var(--gradient-stop-1, #980000)"/>
+                    </linearGradient>
+                    <mask id="mask1">
+                      <rect id="activeMask" x="0" y="0" width="780" height="65" fill="white" />
+                    </mask>
+                    <mask id="mask2">
+                      <rect id="passiveMask" x="780" y="0" width="780" height="65" fill="white" />
+                    </mask>
+                    <g id="rektnetwork">
+                      <path d="M 190.19957,-0.35100882 156.17143,30.906736 h 16.94948 l 34.02866,-31.25774482 z m 572.85646,0 -34.02865,31.25774482 h 16.94949 L 780.00552,-0.35100882 Z M 605.01544,2.2271461 c -8.85081,0 -16.30503,3.0292181 -22.36309,9.0873639 -6.01513,6.015183 -9.02278,13.448149 -9.02278,22.299056 0,8.764984 3.45874,16.197946 10.37616,22.299061 6.91742,6.058146 13.92048,9.087364 21.00971,9.087364 8.89382,0 16.34854,-3.007584 22.3637,-9.022767 6.01512,-6.015187 9.02225,-13.469784 9.02225,-22.363658 0,-8.764979 -3.07202,-16.176828 -9.21607,-22.234978 -6.144,-6.1011074 -13.53383,-9.1514419 -22.16988,-9.1514419 z M 6.7024813,2.355821 V 15.761303 H 32.54605 c 5.413624,0 9.817436,2.019306 13.211691,6.05807 2.878675,3.566145 4.318114,7.540377 4.318114,11.922872 h 13.469557 c 0,-8.764983 -3.072007,-16.176315 -9.216039,-22.234464 C 48.185341,5.4066695 40.795522,2.355821 32.159509,2.355821 Z m 290.6200087,0 v 62.64417 h 13.27575 V 33.678163 h 18.88324 z m 52.07368,0 v 31.322342 h -18.88323 l 32.15951,31.321828 V 2.355821 Z m 152.85013,0 v 62.64417 L 534.40584,33.678163 H 515.52262 V 2.355821 Z m 32.15954,31.322342 32.15951,31.321828 V 51.272567 2.355821 H 554.12673 V 33.678163 Z M 650.42595,2.355821 v 13.405482 h 25.84354 c 5.41364,0 9.81796,2.019306 13.21222,6.05807 2.87866,3.566145 4.31758,7.540377 4.31758,11.922872 h 13.46957 c 0,-8.764983 -3.07198,-16.176315 -9.21603,-22.234464 -6.14404,-6.1011115 -13.53386,-9.15196 -22.16988,-9.15196 z M 212.6025,2.4850062 V 15.632099 h 15.91852 l -0.0646,49.367885 h 27.1329 V 15.632106 h 15.33872 V 2.4850138 Z m 226.19714,0 V 15.632099 h 15.9185 l -0.0646,49.367885 h 27.1324 V 15.632106 h 15.33868 V 2.4850138 Z M 70.867501,2.5490696 V 15.632084 H 135.18652 V 2.5490696 Z m 297.064609,0 V 15.632084 h 64.31903 V 2.5490696 Z m 237.4699,13.0830144 c 5.41361,0 9.81792,2.019827 13.21219,6.058591 2.92167,3.566146 4.3822,7.540381 4.3822,11.922869 0,5.026974 -1.74022,9.280341 -5.22039,12.760554 -3.48018,3.480214 -7.60484,5.220392 -12.374,5.220392 -5.32769,0 -9.70986,-2.126944 -13.1471,-6.380537 -2.92163,-3.566138 -4.3827,-7.432744 -4.3827,-11.600409 0,-4.941042 1.71857,-9.173296 5.15577,-12.696472 3.48021,-3.523183 7.60488,-5.284988 12.37403,-5.284988 z M 70.867501,26.781871 70.674214,64.935372 135.1219,64.999965 V 51.852381 H 84.465732 V 39.929508 H 94.648649 V 26.781893 Z m 297.064609,0 -0.19378,38.153501 64.44818,0.06459 V 51.852354 H 381.53032 V 39.929482 h 10.18295 V 26.781893 Z M 0,33.742245 V 64.999991 H 13.469559 V 33.742245 Z m 14.436432,0 32.159508,31.257746 H 63.545412 L 31.385907,33.742245 Z m 127.427248,0 v 31.257746 h 13.53415 V 33.742245 Z m 14.30775,0 34.02814,31.257746 h 16.95 L 173.12091,33.742245 Z m 487.55201,0 v 31.257746 h 13.46958 V 33.742245 Z m 14.43643,0 32.15954,31.257746 h 16.94945 L 675.10935,33.742245 Z m 56.55978,0 v 31.257746 h 13.53413 V 33.742245 Z m 14.30773,0 34.02865,31.257746 h 16.94949 L 745.97687,33.742245 Z M 278.24082,56.363766 v 8.636225 h 9.92453 v -8.636225 z"/>
+                    </g>
+                    <pattern id="pattern" patternUnits="userSpaceOnUse" x="0" y="0" preserveAspectRatio="xMidYMid slice" viewBox="0 0 780 65" height="65px" width="780px">
+                      <image id="imagePattern" x="0" y="0" width="100%" height="65px" xlink:href="#rektGradient" preserveAspectRatio="xMidYMid slice"/>
+                    </pattern>
+                  </defs>
+                  <use xlink:href="#rektnetwork" x="0" y="0" style="fill:white;mask: url(#mask2)"></use>
+                  <use id="rektNetworkActive" xlink:href="#rektnetwork" x="0" y="0" style="mask: url(#mask1)"></use>
+                </svg>
+
+                <div id="player_slider_active" style="width:100%">
+                  <div id="speaker">
+                    <svg width="1792" height="1792" viewBox="0 0 1792 1792" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M832 352v1088q0 26-19 45t-45 19-45-19l-333-333h-262q-26 0-45-19t-19-45v-384q0-26 19-45t45-19h262l333-333q19-19 45-19t45 19 19 45zm384 544q0 76-42.5 141.5t-112.5 93.5q-10 5-25 5-26 0-45-18.5t-19-45.5q0-21 12-35.5t29-25 34-23 29-36 12-56.5-12-56.5-29-36-34-23-29-25-12-35.5q0-27 19-45.5t45-18.5q15 0 25 5 70 27 112.5 93t42.5 142zm256 0q0 153-85 282.5t-225 188.5q-13 5-25 5-27 0-46-19t-19-45q0-39 39-59 56-29 76-44 74-54 115.5-135.5t41.5-173.5-41.5-173.5-115.5-135.5q-20-15-76-44-39-20-39-59 0-26 19-45t45-19q13 0 26 5 140 59 225 188.5t85 282.5zm256 0q0 230-127 422.5t-338 283.5q-13 5-26 5-26 0-45-19t-19-45q0-36 39-59 7-4 22.5-10.5t22.5-10.5q46-25 82-51 123-91 192-227t69-289-69-289-192-227q-36-26-82-51-7-4-22.5-10.5t-22.5-10.5q-39-23-39-59 0-26 19-45t45-19q13 0 26 5 211 91 338 283.5t127 422.5z" fill="#aaa"/>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+            <div class="flex fill rr">
+              <div id="menu_button_right" class="flex fill menu_button">
+                ?
+              </div>
+            </div>
+          </div>
+
+        </div>
+      <div id="meta" class="flex center auto">Loading Track Information</div>
+      <nav id="nav" class="flex r center auto"></nav>
+    </header>
+
+    <main id="main" class="flex c fill"></main>
+
+    <footer id="footer" class=""></footer>
 
 
-	<script src="https://rekt.network/static/js/firebase-app.js"></script>
-	<script src="https://rekt.network/static/js/firebase-messaging.js"></script>
-	<script src="https://rekt.network/static/js/push.js"></script>
-	<script src="https://rekt.network/static/js/player.js"></script>
-	<script src="https://rekt.network/static/js/keybind.js"></script>
-	<script>
-		params = new URLSearchParams(location.search); // querystring parameters
-	</script>
-</body>
+    <!-- DEFER FIREBASE -->
+    <script src="https://rekt.fm/static/js/firebase-app.js" defer></script>
+    <script src="https://rekt.fm/static/js/firebase-messaging.js" defer></script>
+    <script src="https://rekt.fm/static/js/push.js" defer></script>
+    <!-- THIRD PARTY -->
+    <script src="https://rekt.fm/static/js/pf_eventsource.js"></script>
+    <script src="https://rekt.fm/static/js/shaka.js"></script>
 
+    <!-- MAIN SCRIPTS -->
+    <script src="https://rekt.fm/static/js/helper.js"></script>
+    <script src="https://rekt.fm/static/js/settings.js"></script>
+    <script src="https://rekt.fm/static/js/slider.js"></script>
+    <script src="https://rekt.fm/static/js/menu.js"></script>
+    <script src="https://rekt.fm/static/js/page.js"></script>
+    <script src="https://rekt.fm/static/js/stream.js"></script>
+    <script src="https://rekt.fm/static/js/station.js"></script>
+    <script src="https://rekt.fm/static/js/eq.js"></script>
+    <script src="https://rekt.fm/static/js/player.js"></script>
+    <script src="https://rekt.fm/static/js/meta.js"></script>
+
+    <!-- DYNAMIC LOAD -->
+    <script async>
+      function loadMilkdrop(){
+        return new Promise((resolve, reject) => {
+          Promise.all([
+            scriptLoad("https://rekt.fm/static/js/butterchurn/butterchurn.min.js"),
+            scriptLoad("https://rekt.fm/static/js/butterchurn/butterchurnExtraImages.min.js"),
+            scriptLoad("https://rekt.fm/static/js/butterchurn/presets/butterchurnPresets.min.js"),
+            scriptLoad("https://rekt.fm/static/js/butterchurn/presets/butterchurnPresetsExtra.min.js"),
+            scriptLoad("https://rekt.fm/static/js/butterchurn/presets/butterchurnPresetsExtra2.min.js"),
+          ])
+          .then(results => {
+            console.log("Loaded Scripts", results);
+            scriptLoad("https://rekt.fm/static/js/butterchurn.js")
+            .then(r => resolve(r));
+          })
+          .catch(e => {
+            console.log("Script Loading Error", e);
+            reject(e);
+          });
+        });
+      }
+      function loadMathbox(){
+        return new Promise((resolve, reject) => {
+          scriptLoad("https://rekt.fm/static/js/mathbox-bundle.min.js")
+          .then(res => {
+            scriptLoad("https://rekt.fm/static/js/mathbox.js")
+            .then(r => resolve(r));
+          })
+          .catch(e => {
+            console.log("Script Loading Error", e);
+            reject(e);
+          });
+        });
+      }
+
+      if (CAN_MILKDROP) {
+        loadMilkdrop().then(r => {
+          if (CAN_MATHBOX) {
+            loadMathbox();
+          }
+        }).catch(e => console.log("Error Loading Milkdrop", e));
+      } else if (CAN_MATHBOX) {
+        loadMathbox();
+      }
+
+    </script>
+    <script src="https://rekt.fm/static/js/webrtc.js"></script>
+    <script src="https://rekt.fm/static/js/irc.js"></script>
+
+    <script src="https://rekt.fm/static/js/archive.js"></script>
+    <script src="https://rekt.fm/static/js/releases.js"></script>
+
+    <script src="https://rekt.fm/static/js/keybind.js"></script>
+    <script>
+      function setState(e) {
+        e.preventDefault();
+        var params = new URLSearchParams(e.target.search);
+        var param_station = params.get("station");
+        var autoplay = params.get("autoplay");
+
+        var s = W[e.target.hash.slice(1)] instanceof Page ? W[e.target.hash.slice(1)] : pageMap.get(ls("active_page", 0));
+        if (s !== activePage) {
+          console.log("pop page");
+          s.setActive();
+        }
+        // Check station
+        s = W[param_station] instanceof Station ? W[param_station] : stationMap.get(ls("active_station", DEFAULT_STATION))
+        if (s !== activeStation) {
+          s.setActive(e);
+        }
+        setArchive(params);
+        setReleases(params);
+        autoplay && playStream(); //TODO fix autoplay of archive
+
+        return false;
+      }
+
+      function initState(e, init) {
+        var params = new URLSearchParams(location.search);
+        var param_station = params.get("station");
+
+        var p = W[location.hash.slice(1)] instanceof Page ? W[location.hash.slice(1)] : pageMap.get(ls("active_page", 0));
+        if (!p) {
+          p = pageMap.get(0);
+        }
+        if (p && p != activePage) {
+          p.setActive();
+        }
+
+        // Check station
+        var s = W[param_station] instanceof Station ? W[param_station] : stationMap.get(ls("active_station", DEFAULT_STATION))
+        if (!s) {
+          s = stationMap.get(DEFAULT_STATION);
+        }
+        if (s && s != activeStation) {
+          s.setActive();
+        }
+
+        if (init) {
+          var autoplay = params.get('autoplay');
+
+          // Archive Promise
+          fetch('api/archives')
+          .then(r => r.json())
+          .then(r => {
+            console.log('Archive Result', r);
+            r.forEach(set => new ArchiveFolder(set));
+            archiveBrowserArtists.appendChild(CE('','fill padding'));
+            setArchive(params);
+            if (autoplay && activeStation === archive) {
+              playStream();
+            }
+          })
+          .catch(e => {
+            console.error("Archives Error", e);
+          });
+
+          // Releases Promise
+          fetch('api/releases')
+          .then(r => r.json())
+          .then(r => {
+            console.log('Releases Result', r);
+            r.forEach(artist => new Artist(artist));
+            releasesBrowserLeft.appendChild(CE('','fill padding'));
+            setReleases(params);
+            if (autoplay && activeStation === releases) {
+              playStream();
+            }
+          })
+          .catch(e => {
+            console.error("Releases Error", e);
+          });
+
+          if (autoplay && activeStation !== archive && activeStation !== releases) {
+            playStream();
+          }
+
+        } else {
+          setArchive(params);
+          setReleases(params);
+        }
+      }
+
+      D.addEventListener("DOMContentLoaded", function() {
+        StartMetaFeed();
+        StartIRCFeed();
+
+        W.onpopstate = initState;
+        initState(null, true);
+        focus = D.hasFocus();
+
+      });
+  	</script>
+  </body>
 </html>
