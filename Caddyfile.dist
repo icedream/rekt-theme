@@ -8,6 +8,7 @@ rewrite {
 	to {path} /proxy/{uri}
 }
 proxy /proxy https://rekt.fm {
+	header_upstream Host rekt.fm
 	transparent
 	without /proxy
 }
