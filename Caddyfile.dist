@@ -8,5 +8,6 @@ rewrite {
 	to {path} /proxy/{uri}
 }
 proxy /proxy https://rekt.fm {
+	transparent
 	without /proxy
 }
