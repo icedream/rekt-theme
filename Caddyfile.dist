@@ -1,3 +1,16 @@
 http://:80
 
 root /htdocs/
+
+# Forward non-existent paths to original REKT server.
+# See https://github.com/mholt/caddy/issues/695#issuecomment-201871982
+rewrite {
+	if {path} is /
+	to /proxy/{uri}
+}
+rewrite {
+	to {path} /proxy/{uri}
+}
+proxy /proxy https://rekt.fm {
+	without /proxy
+}
