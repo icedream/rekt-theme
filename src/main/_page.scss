@@ -22,13 +22,13 @@ section {
     }
 
     #waves {
-
       @if $icedream-saturation {
         @include saturate-from-red(300%, 5%);
       }
     }
 
     #eqs {
+      z-index: 1;
       padding: 20vh;
       transition: opacity ease-out .33s, transform ease-out .33s;
       opacity: 0;
@@ -44,11 +44,11 @@ section {
     }
 
     #bars {
-      display: none;
+      opacity: 0;
     }
 
     &:hover {
-      #eq {
+      #eqs {
         opacity: 1;
         transform: scale(1);
       }
