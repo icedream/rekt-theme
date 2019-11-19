@@ -1,18 +1,12 @@
 {
   "presets": [
-    ["babel-preset-env", {
-      "targets": {
-        "node": true,
-        "uglify": false
+    [
+      "@babel/preset-env",
+      {
+        "targets": {
+          "node": true
+        }
       }
-    }]
-  ],
-  "plugins": [
-    "babel-plugin-dynamic-import-node",
-    "babel-plugin-syntax-export-extensions",
-    "babel-plugin-transform-class-properties",
-    "babel-plugin-transform-export-extensions",
-    "babel-plugin-transform-object-rest-spread",
-    "babel-plugin-transform-runtime"
+    ]
   ]
 }

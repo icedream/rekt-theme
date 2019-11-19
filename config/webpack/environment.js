@@ -1,15 +1,14 @@
 import postcssAutoprefixerPlugin from 'autoprefixer';
 import postcssImportPlugin from 'postcss-import';
 import postcssPresetEnvPlugin from 'postcss-preset-env';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 
 export default class Environment {
-  constructor(options) {
+  constructor(options = {}) {
     this.development = true;
     this.production = false;
     this.server = false;
     this.docker = false;
-
-    this.locales = ['de'];
 
     if (options !== undefined && options !== null) {
       this.input(options);
@@ -67,16 +66,16 @@ export default class Environment {
 
       // @HACK
       // ExtractTextPlugin,
-      MiniCssExtractPlugin,
+      // MiniCssExtractPlugin,
     } = this;
 
     // if (!ExtractTextPlugin) {
     //   throw new Error('Need a valid ExtractTextPlugin fed into the environment object.');
     // }
 
-    if (!MiniCssExtractPlugin) {
-      throw new Error('Need a valid MiniCssExtractPlugin fed into the environment object.');
-    }
+    // if (!MiniCssExtractPlugin) {
+    //   throw new Error('Need a valid MiniCssExtractPlugin fed into the environment object.');
+    // }
 
     const cssLoaders = [
       {
@@ -85,9 +84,9 @@ export default class Environment {
           importLoaders: 1,
           sourceMap: true,
           modules: false,
-          localIdentName: production
-            ? '[name]__[local]--[hash:base64:5]'
-            : '[name]__[local]--[hash:base64:5]',
+          // localIdentName: production
+          //   ? '[name]__[local]--[hash:base64:5]'
+          //   : '[name]__[local]--[hash:base64:5]',
         },
       },
       {
@@ -111,7 +110,6 @@ export default class Environment {
         {
           loader: 'resolve-url-loader',
           options: {
-            fail: true,
             silent: false,
           },
         },
@@ -123,7 +121,7 @@ export default class Environment {
       );
     }
 
-    if (!server) {
+    // if (!server) {
       // const fallback = {
       //   loader: 'style-loader',
       // };
@@ -131,8 +129,15 @@ export default class Environment {
       //   fallback,
       //   use: cssLoaders,
       // });
-      cssLoaders.unshift(MiniCssExtractPlugin.loader);
-    }
+      // cssLoaders.unshift(MiniCssExtractPlugin.loader);
+      cssLoaders.unshift({
+        loader: MiniCssExtractPlugin.loader,
+        options: {
+          hmr: this.server,
+          // reloadAll: true,
+        },
+      });
+    // }
 
     return cssLoaders;
   }
