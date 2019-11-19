@@ -1,44 +1,52 @@
 @import 'page/meta_overlay_fix';
 @import 'page/stations';
 
-.page {
+section {
   // background-color: #000;
   background: transparent;
   color: $icedream-text-color;
 
-  // seems like above colors get overwritten again when .active is added
-  &.active {
-    // background-color: #000;
-    background: transparent;
-    color: $icedream-text-color;
-  }
-
-  // apply theme font to all pages but chat page (monospace!)
-  &:not(#page_Chat) {
-    @include icedream-font;
-  }
-
-  &#page_EQ {
+  &#pageEQ {
     background: initial;
-    #wave {
+    flex-direction: row;
+    position: relative;
+
+    // NOTE - #bars is used by the website to determine the dimensions of the waveform canvas, do not set display: none on it or it will disappear on page resize!
+
+    #waves, #bars {
       position: absolute;
       left: 0;
       right: 0;
-      top: 25%;
-      bottom: 25%;
+      top: 0;
+      bottom: 0;
     }
-    #eq {
-      margin: 20vh;
+
+    #waves {
+
+      @if $icedream-saturation {
+        @include saturate-from-red(300%, 5%);
+      }
+    }
+
+    #eqs {
+      padding: 20vh;
       transition: opacity ease-out .33s, transform ease-out .33s;
       opacity: 0;
       transform: scale(0.75);
       .slider {
         background-color: rgba(0, 0, 0, .75);
       }
+      .eq {
+        @if $icedream-saturation {
+          @include saturate-from-blue();
+        }
+      }
     }
+
     #bars {
       display: none;
     }
+
     &:hover {
       #eq {
         opacity: 1;
@@ -47,19 +55,10 @@
     }
   }
 
-  .eq {
-    @if $icedream-saturation {
-      @include saturate-from-red();
-    }
-  }
-
-  .page_EQ_video {
-    display: none;
-  }
-
-  #wave {
-    @if $icedream-saturation {
-      @include saturate-from-red(300%, 5%);
-    }
+  // seems like above colors get overwritten again when .active is added
+  &.active {
+    // background-color: #000;
+    background: transparent;
+    color: $icedream-text-color;
   }
 }

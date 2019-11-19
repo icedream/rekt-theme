@@ -1,3 +1,7 @@
 @mixin saturate-from-red($brightness: 250%, $saturate: 45%) {
   filter: hue-rotate(220deg) brightness($brightness) saturate($saturate);
 }
+
+@mixin saturate-from-blue($brightness: 250%, $saturate: 45%) {
+  filter: brightness($brightness) saturate($saturate);
+}

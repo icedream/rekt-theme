@@ -1,5 +1,5 @@
 #volumeSVG {
   @if $icedream-saturation {
-    @include saturate-from-red();
+    @include saturate-from-blue();
   }
 }
