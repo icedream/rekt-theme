@@ -12,8 +12,7 @@ $gradient-stop-0: #46c;
 $gradient-stop-1: #013;
 $gradient-radial: rgba(64, 128, 255, 0.05);
 
-// wrap all rules in body{} to increase css rule specificity, relatively safe overriding without !important
-body.icedream {
+body.rekt.icedream, body.archives.icedream {
   --gradient-stop-0: #{$gradient-stop-0};
   --gradient-stop-1: #{$gradient-stop-1};
   --gradient-radial: #{$gradient-radial};
