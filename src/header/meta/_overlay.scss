@@ -1,6 +1,6 @@
 // metadata overlay tweak
 @if $icedream-metadata-overlay {
-  #meta {
+  .meta {
     margin: 0; // sass-lint:disable-line variable-for-property
     position: fixed;
     bottom: 0;
@@ -15,9 +15,11 @@
     filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#{$icedream-metadata-overlay-background-gradient-from}, endColorstr=#{$icedream-metadata-overlay-background-gradient-to});
   }
 
-  .page {
-    &:not(#page_EQ) {
-      height: calc(100% - 9vmin);
+  #main {
+    section {
+      &:not(#pageEQ) {
+        height: calc(100% - 9vmin);
+      }
     }
   }
 }

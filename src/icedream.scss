@@ -18,6 +18,8 @@ body.icedream {
   --gradient-stop-1: #{$gradient-stop-1};
   --gradient-radial: #{$gradient-radial};
 
+  @include icedream-font;
+
   @import 'header';
   @import 'main';
 }

@@ -2,8 +2,7 @@
 @import 'meta/prefix';
 
 // currently playing track metadata
-#meta {
-  @include icedream-font;
+.meta {
   color: $icedream-text-color;
   line-height: $icedream-extended-line-height;
 }
