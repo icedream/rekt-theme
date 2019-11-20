@@ -12,7 +12,6 @@
     "lint": "run-s lint:* --",
     "lint:sass": "sass-lint -v -q",
     "lint:eslint": "eslint .",
-    "postinstall": "node ./devtools/lockfiles",
     "prepublishOnly": "run-s build:production",
     "start:webpack-dev-server": "nodemon --watch webpack.config.babel.js --watch config/webpack --watch browserslist --watch .browserslistrc --exec webpack-dev-server --mode development --env server --inline --hot",
     "start": "run-p start:*"
@@ -21,7 +20,6 @@
     "@babel/cli": "^7.7.0",
     "@babel/core": "^7.7.2",
     "@babel/preset-env": "^7.7.1",
-    "@babel/register": "^7.7.0",
     "autoprefixer": "^9.7.2",
     "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.6",
@@ -61,7 +59,6 @@
     "sass-loader": "^8.0.0",
     "slash": "^3.0.0",
     "style-loader": "^1.0.0",
-    "synp": "^1.7.0",
     "uglifyjs-webpack-plugin": "^2.2.0",
     "url-loader": "^2.2.0",
     "webfontloader": "^1.6.28",
