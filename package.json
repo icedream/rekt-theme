@@ -19,6 +19,7 @@
     "@babel/cli": "^7.7.0",
     "@babel/core": "^7.7.2",
     "@babel/preset-env": "^7.7.1",
+    "@babel/register": "^7.7.0",
     "autoprefixer": "^9.7.2",
     "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.6",
@@ -65,8 +66,7 @@
     "webpack-cli": "^3.3.10",
     "webpack-dev-server": "^3.9.0",
     "webpack-hot-middleware": "^2.25.0",
-    "webpack-merge": "^4.2.2",
-    "webpack-userscript": "^2.3.1"
+    "webpack-merge": "^4.2.2"
   },
   "dependencies": {
     "typeface-orbitron": "^0.0.72"
