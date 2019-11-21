@@ -3,7 +3,6 @@ import {
   NamedModulesPlugin,
   HashedModuleIdsPlugin,
   LoaderOptionsPlugin,
-  HotModuleReplacementPlugin,
   NoEmitOnErrorsPlugin,
   ProvidePlugin,
 
@@ -14,17 +13,16 @@ import path from 'path';
 import { isatty } from 'tty';
 import chalk from 'chalk';
 import _debug from 'debug';
-// import slash from 'slash';
 
 import cssnano from 'cssnano';
 
 import CaseSensitivePathsPlugin from 'case-sensitive-paths-webpack-plugin';
-// import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import HtmlPlugin from 'html-webpack-plugin';
 import ProgressBarPlugin from 'progress-bar-webpack-plugin';
-import UglifyJsPlugin from 'uglifyjs-webpack-plugin';
 import OptimizeCssAssetsPlugin from 'optimize-css-assets-webpack-plugin';
+
+import TerserPlugin from 'terser-webpack-plugin';
 
 import postcssSafeParser from 'postcss-safe-parser';
 
@@ -102,13 +100,13 @@ export default (options, { mode }) => {
   const cssOutputRebasePath = '../../../';
 
   // Default options for file-loader
-  const getFileLoaderOptions = type => ({
+  const getFileLoaderOptions = (type) => ({
     name: getAssetOutputFilename(type),
     publicPath: cssOutputRebasePath,
   });
 
   // Default options for url-loader
-  const getUrlLoaderOptions = type => ({
+  const getUrlLoaderOptions = (type) => ({
     ...getFileLoaderOptions(type),
     // limit: 1, // Don't inline anything (but empty files) by default
     limit: 4 * 1024,
@@ -173,7 +171,7 @@ export default (options, { mode }) => {
           /\.(gif|png|webp)$/i, // graphics
           /\.svg$/i, // svg
           /\.jpe?g$/i, // jpeg
-        ].map(test => ({
+        ].map((test) => ({
           test,
           use: [
             {
@@ -212,7 +210,7 @@ export default (options, { mode }) => {
         ...[
           /\.(mp4|ogg|webm)$/i, // video
           /\.(wav|mp3|m4a|aac|oga)$/i, // audio
-        ].map(test => ({
+        ].map((test) => ({
           test,
           loader: 'url-loader',
           options: getUrlLoaderOptions('media'),
@@ -220,7 +218,7 @@ export default (options, { mode }) => {
 
         ...[
           /\.(eot|otf|ttf|woff|woff2)$/i, // fonts
-        ].map(test => ({
+        ].map((test) => ({
           test,
           loader: 'url-loader',
           options: getUrlLoaderOptions('font'),
@@ -342,7 +340,7 @@ export default (options, { mode }) => {
         new ModuleConcatenationPlugin(),
       ].filter(() => production),
 
-    ].filter(plugin => plugin !== false),
+    ].filter((plugin) => plugin !== false),
     resolve: {
       extensions: [
         '.js', '.jsx',
@@ -354,18 +352,7 @@ export default (options, { mode }) => {
     optimization: {
       minimize: production,
       minimizer: [
-        new UglifyJsPlugin({
-          parallel: true,
-          uglifyOptions: {
-            compress: {
-              warnings: false,
-            },
-            output: {
-              comments: false,
-            },
-          },
-          sourceMap: true,
-        }),
+        new TerserPlugin(),
         new OptimizeCssAssetsPlugin({
           cssProcessor: cssnano,
           cssProcessorOptions: {
