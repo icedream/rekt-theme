@@ -31,3 +31,6 @@ node_modules/**
 
 # Intermediate build files (cache, etc.)
 /build
+
+# Inline scripts from rekt website
+/src/rekt-embedded.js
