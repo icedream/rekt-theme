@@ -1,0 +1,26 @@
+name: Build
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+
+      - uses: actions/checkout@v1
+
+      - name: Use Node.js 12.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+
+      - name: Install dependencies
+      - run: yarn install
+
+      - name: Build project
+        run: yarn build
+
+      - uses: actions/upload-artifact@f9dc46e362f885b514ab9d6428112855037e0e3c
+        with:
+          name: dist
+          path: dist/
