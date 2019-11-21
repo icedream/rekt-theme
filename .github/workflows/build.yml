@@ -20,7 +20,8 @@ jobs:
       - name: Build project
         run: yarn build
 
-      - uses: actions/upload-artifact@f9dc46e362f885b514ab9d6428112855037e0e3c
+      - name: Upload built files
+        uses: actions/upload-artifact@f9dc46e362f885b514ab9d6428112855037e0e3c
         with:
           name: dist
           path: dist/
