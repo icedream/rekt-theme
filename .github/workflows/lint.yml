@@ -1,4 +1,4 @@
-name: Build
+name: Lint
 
 on: [push]
 
@@ -18,11 +18,5 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
-      - name: Build project
-        run: yarn build:production
-
-      - name: Upload built files
-        uses: actions/upload-artifact@f9dc46e362f885b514ab9d6428112855037e0e3c
-        with:
-          name: dist
-          path: dist/
+      - name: Lint
+        run: yarn lint
