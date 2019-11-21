@@ -60,23 +60,6 @@ export default class Environment {
   }
 
   styleLoaders(...preprocessingLoaders) {
-    const {
-      production,
-      server,
-
-      // @HACK
-      // ExtractTextPlugin,
-      // MiniCssExtractPlugin,
-    } = this;
-
-    // if (!ExtractTextPlugin) {
-    //   throw new Error('Need a valid ExtractTextPlugin fed into the environment object.');
-    // }
-
-    // if (!MiniCssExtractPlugin) {
-    //   throw new Error('Need a valid MiniCssExtractPlugin fed into the environment object.');
-    // }
-
     const cssLoaders = [
       {
         loader: 'css-loader',
@@ -93,7 +76,7 @@ export default class Environment {
         loader: 'postcss-loader',
         options: {
           ident: 'postcss',
-          plugins: loader => [
+          plugins: (loader) => [
             postcssImportPlugin({
               root: loader.resourcePath,
             }),
@@ -103,7 +86,7 @@ export default class Environment {
           sourceMap: true,
         },
       },
-    ].filter(loader => loader !== false);
+    ].filter((loader) => loader !== false);
 
     if (preprocessingLoaders && preprocessingLoaders.length > 0) {
       cssLoaders.push(
@@ -113,30 +96,29 @@ export default class Environment {
             silent: false,
           },
         },
-        ...preprocessingLoaders.map(loader => Object.assign({}, loader, {
-          options: Object.assign({}, loader.options || {}, {
-            sourceMap: true,
-          }),
+        ...preprocessingLoaders.map((loader) => ({
+          ...loader,
+          options: { ...loader.options || {}, sourceMap: true },
         })),
       );
     }
 
     // if (!server) {
-      // const fallback = {
-      //   loader: 'style-loader',
-      // };
-      // cssLoaders = ExtractTextPlugin.extract({
-      //   fallback,
-      //   use: cssLoaders,
-      // });
-      // cssLoaders.unshift(MiniCssExtractPlugin.loader);
-      cssLoaders.unshift({
-        loader: MiniCssExtractPlugin.loader,
-        options: {
-          hmr: this.server,
-          // reloadAll: true,
-        },
-      });
+    // const fallback = {
+    //   loader: 'style-loader',
+    // };
+    // cssLoaders = ExtractTextPlugin.extract({
+    //   fallback,
+    //   use: cssLoaders,
+    // });
+    // cssLoaders.unshift(MiniCssExtractPlugin.loader);
+    cssLoaders.unshift({
+      loader: MiniCssExtractPlugin.loader,
+      options: {
+        hmr: this.server,
+        // reloadAll: true,
+      },
+    });
     // }
 
     return cssLoaders;

@@ -1,3 +1,3 @@
-window.addEventListener("load", () => {
-    document.body.classList.add("icedream");
+window.addEventListener('load', () => {
+  document.body.classList.add('icedream');
 });
