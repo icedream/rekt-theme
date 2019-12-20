@@ -1,5 +1,9 @@
 #volumeSVG {
   @if $icedream-saturation {
-    @include saturate-from-blue();
+    @include saturate-from-blue(350%);
   }
+}
+
+#speaker {
+  filter: brightness(200%);
 }
