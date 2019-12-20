@@ -8,3 +8,11 @@
   background-size: 50%;
   background-color: #000;
 }
+
+small {
+  color: $rekt-accent-color;
+}
+
+* {
+  scrollbar-color: $rekt-accent-color var(--background-2);
+}
