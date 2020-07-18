@@ -9,7 +9,10 @@
   background-color: #000;
 }
 
-small {
+// NOTE - $rekt-accent-color application on strong and pre a added by Z
+small,
+strong,
+pre a {
   color: $rekt-accent-color;
 }
 

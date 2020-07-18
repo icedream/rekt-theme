@@ -96,8 +96,9 @@ export default (options, { mode }) => {
   const cssChunkOutputFileName = getOutputFilename('css')
     .replace(/\[chunkhash(.*?)\]/g, '[id$1]')
     .replace(/\[ext(.*?)\]/g, 'css');
-  // const cssOutputRebasePath = `${slash(path.relative(path.dirname(cssOutputFileName), ''))}/`;
-  const cssOutputRebasePath = '../../../';
+  // NOTE - Z replaced the paths on his server with non-relative paths, so we're doing that here as well
+  const cssOutputRebasePath = `/${path.relative(path.dirname(cssOutputFileName), '').replace(/\\/g, '/')}/`;
+  // const cssOutputRebasePath = '../../../';
 
   // Default options for file-loader
   const getFileLoaderOptions = (type) => ({

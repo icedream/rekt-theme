@@ -7,3 +7,12 @@
 #speaker {
   filter: brightness(200%);
 }
+
+// NOTE - following fill override added by Z
+#player {
+  .slider {
+    .fill {
+      fill: URL('#rektGradient') !important;
+    }
+  }
+}

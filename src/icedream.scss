@@ -7,15 +7,16 @@
 @import 'font';
 @import 'debug';
 
-
 $gradient-stop-0: #46c;
 $gradient-stop-1: #013;
 $gradient-radial: rgba(64, 128, 255, 0.05);
 
-body.rekt.icedream, body.archives.icedream {
-  --gradient-stop-0: #{$gradient-stop-0};
-  --gradient-stop-1: #{$gradient-stop-1};
-  --gradient-radial: #{$gradient-radial};
+// NOTE - body.rekt, body.archives references removed by Z
+body {
+  // NOTE - !important added by Z since the theming was buggy
+  --gradient-stop-0: #{$gradient-stop-0} !important;
+  --gradient-stop-1: #{$gradient-stop-1} !important;
+  --gradient-radial: #{$gradient-radial} !important;
 
   @include icedream-font;
 
